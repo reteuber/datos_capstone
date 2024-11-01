@@ -18,8 +18,8 @@
 
 ---
 - Agrupar todas las **proyecciones** juntas y mantener los **datos históricos** y otros análisis después.
-- Hacer las visualizaciones **interactivas** para que permitan interacción con hover o clics.
-- Seguir los diseños oficiales en **Figma** como base para todas las visualizaciones.
-- Crear bases de datos simuladas para los datos que no tengamos, y **subirlas al repositorio** para facilitar el acceso y mantener la consistencia en el proyecto.
+- Hacer las visualizaciones **interactivas** para que sean interactivas con hover o clicks.
+- Seguir los diseños oficiales en **Figma** como base para todas las visualizaciones (cambiar allá algo antes q hacerlo acá).
+- Crear bases de datos simuladas para los datos que no tengamos y **subirlas al repositorio**.
 
 
