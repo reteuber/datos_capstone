@@ -1,0 +1,30 @@
+.container {
+    width: 100%;
+    max-width: 1500px; /* Limita el ancho máximo si es necesario */
+    margin: auto;
+    padding: 0px;
+    box-sizing: border-box; /* Incluye el padding dentro del tamaño */
+    font-family: 'Inter', sans-serif;
+}
+
+#vis-1 {
+    width: 100%;
+    height: auto; /* Deja que el contenedor ajuste su altura según el contenido */
+}
+
+svg {
+    width: 100%;
+    height: 500px; /* Define una altura suficiente para el SVG */
+}
+
+.bar {
+    transition: fill 0.3s;
+}
+
+.bar:hover {
+    fill: #177D87;
+}
+
+.axis text {
+    font-size: 12px;
+}
