@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="visualizacion.js" defer></script>
-    
+    <title>Testeo de Visualizaciones de Datos</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
-<body>
-    <div class="container">
-        <h1>VISUALIZACIONES DE DATOS </h1>
-        <div id="vis-1">
-            <h2>Transacciones por hora del día</h2>
-        </div>
+<body class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="max-w-2xl p-12 bg-white shadow-lg rounded-xl text-center border border-gray-200">
+        <h1 class="text-3xl font-bold mb-6">
+            📊 Testeo de visualizaciones de datos
+        </h1>
+        <p class="text-gray-700 text-lg mb-6">
+            🌟 ¡Bienvenidos al testeo de nuestra plataforma! El objetivo de esta prueba es explorar cómo los usuarios interactúan con nuestros gráficos y obtener retroalimentación clave para mejorar la experiencia de usuario.
+        </p>
+        <p class="text-gray-700 text-lg mb-6">
+            A lo largo de la prueba, cada visualización cuenta con opciones de navegación para avanzar ➡️ o volver ⬅️, permitiendo que exploren libremente cada gráfica. Su participación es fundamental.
+        </p>
+        <p class="text-gray-700 text-lg mb-8">
+            Al hacer clic en "Empezar 🚀" podrán iniciar el recorrido por las visualizaciones.
+        </p>
+        <button onclick="location.href='vis1.html'" 
+                class="px-8 py-4 text-white text-lg font-semibold rounded-lg transition" 
+                style="background-color: #8297FF;" 
+                onmouseover="this.style.backgroundColor='#6E85FF'" 
+                onmouseout="this.style.backgroundColor='#8297FF'">
+            Empezar 🚀
+        </button>
     </div>
 </body>
-
 </html>
