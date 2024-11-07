@@ -6,14 +6,23 @@
     <title>Visualización de Datos</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="vis1.js" defer></script>
+    <script src="vis2.js" defer></script>
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-50">
     <div class="container max-w-5xl p-12 bg-white shadow-2xl rounded-xl text-center border border-gray-300">
         <h2 class="text-3xl font-bold mb-8">Proyección de venta por semana del año</h2>
-        <div id="vis-1" class="mb-10">
+        
+        <!-- Selector para el filtro de semanas -->
+        <div class="mb-4">
+            <label for="semana-filter" class="block text-lg font-semibold mb-2">Seleccione el rango de semanas:</label>
+            <select id="semana-filter" class="px-4 py-2 border rounded">
+                <!-- Opciones de semanas se agregarán dinámicamente desde JavaScript -->
+            </select>
+        </div>
+
+        <div id="vis-2" class="mb-10">
             <!-- Aquí va tu visualización D3 -->
         </div>
         <div class="flex justify-between">
