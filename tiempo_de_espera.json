@@ -1,0 +1,32 @@
+[
+    {
+        "tiempo": "2:21",
+        "tipo_de_caja": "Asistida",
+        "turno": "Mañana"
+    },
+    {
+        "tiempo": "8:45",
+        "tipo_de_caja": "Autoservicio",
+        "turno": "Mañana"
+    },
+    {
+        "tiempo": "13:30",
+        "tipo_de_caja": "Asistida",
+        "turno": "Tarde"
+    },
+    {
+        "tiempo": "15:15",
+        "tipo_de_caja": "Autoservicio",
+        "turno": "Tarde"
+    },
+    {
+        "tiempo": "21:10",
+        "tipo_de_caja": "Asistida",
+        "turno": "Noche"
+    },
+    {
+        "tiempo": "23:45",
+        "tipo_de_caja": "Autoservicio",
+        "turno": "Noche"
+    }
+]
