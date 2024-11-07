@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de Tiempo de Espera</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="vis3.js" defer></script>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="container max-w-2xl p-6 bg-white shadow-2xl rounded-xl text-center border border-gray-300" style="height: 650px;">
+        <h2 class="text-3xl font-bold mb-4">Tiempo de espera promedio por tipo de caja</h2>
+        
+        <!-- Selector para el filtro de turnos -->
+        <div class="mb-3">
+            <label class="block text-lg font-semibold mb-2">Seleccione el turno:</label>
+            <div class="flex justify-center space-x-4">
+                <button onclick="actualizarTurno('Mañana')" data-turno="Mañana" class="filtro-btn px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition">Mañana</button>
+                <button onclick="actualizarTurno('Tarde')" data-turno="Tarde" class="filtro-btn px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition">Tarde</button>
+                <button onclick="actualizarTurno('Noche')" data-turno="Noche" class="filtro-btn px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition">Noche</button>
+                <button onclick="actualizarTurno('Todos')" data-turno="Todos" class="filtro-btn px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-gray-300 transition">Todos</button>
+            </div>
+        </div>
+
+        <div id="grafico" class="mb-4">
+            <!-- Aquí va tu visualización D3 -->
+        </div>
+        
+        <!-- Botones de navegación elevados 200px dentro del contenedor -->
+        <div class="flex justify-between" style="margin-top: -150px;">
+            <button onclick="location.href='vis2.html'" class="px-8 py-3 bg-gray-200 text-gray-700 font-semibold text-lg rounded-lg hover:bg-gray-300 transition">
+                ⬅️ Volver
+            </button>
+            <button onclick="location.href='vis4.html'" 
+                    class="px-8 py-3 text-white font-semibold text-lg rounded-lg transition" 
+                    style="background-color: #8297FF;" 
+                    onmouseover="this.style.backgroundColor='#6E85FF'" 
+                    onmouseout="this.style.backgroundColor='#8297FF'">
+                Siguiente ➡️
+            </button>
+        </div>
+    </div>
+</body>
+</html>
