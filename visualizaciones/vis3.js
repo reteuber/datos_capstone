@@ -2,6 +2,7 @@ const dataUrl = "https://raw.githubusercontent.com/reteuber/visualizaciones_caps
 
 let datos = [];
 let turnoSeleccionado = "Todos";
+let maxTiempoGlobal = 0; // Valor máximo global
 
 async function cargarDatos() {
     try {
@@ -15,6 +16,9 @@ async function cargarDatos() {
             const tiempoEnMinutos = horas * 60 + minutos;
             return { ...d, tiempo: tiempoEnMinutos };
         });
+
+        // Calcula el valor máximo global de 'tiempo'
+        maxTiempoGlobal = d3.max(datos, d => d.tiempo);
         
         filtrarDatos();
     } catch (error) {
@@ -53,8 +57,9 @@ function generarGrafico(datosFiltrados) {
         .append("g")
         .attr("transform", `translate(${margin.left-15}, ${margin.top-30})`);
 
+    // Mantiene el dominio del eje X basado en maxTiempoGlobal
     const x = d3.scaleLinear()
-        .domain([0, d3.max(datosFiltrados, d => d.tiempo) || 0])
+        .domain([0, maxTiempoGlobal || 0])
         .range([0, width]);
 
     const y = d3.scaleBand()
@@ -62,16 +67,25 @@ function generarGrafico(datosFiltrados) {
         .range([0, height])
         .padding(0.2);
 
-    const xAxis = svg.append("g")
+        const xAxis = svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x)
-            .ticks(10)
-            .tickFormat(d => `${Math.floor(d / 60)}:${d % 60 < 10 ? '0' : ''}${d % 60}`))
+            .ticks(20)  // Incrementa el número de divisiones en el eje X
+            .tickFormat(d => `${Math.floor(d / 60)}:${d % 60 < 10 ? '0' : ''}${d % 60}`)
+            .tickSize(0)) // Quita las líneas de ticks del eje X
         .attr("font-size", "14px");
-
+    
+    // Elimina todas las líneas de ticks de los valores en el eje X
     xAxis.selectAll(".tick line").remove();
     xAxis.select(".tick:first-of-type").remove();
     xAxis.select(".tick:last-of-type").remove();
+    xAxis.selectAll("text")
+    .attr("transform", "rotate(-45)")  // Rota el texto 45 grados hacia la izquierda
+    .style("text-anchor", "end")       // Alinea el texto hacia el extremo derecho
+    .attr("dx", "-0.5em")              // Ajusta la posición horizontal para que no se corte
+    .attr("dy", "0.15em");             // Ajusta la posición vertical
+
+    
 
     svg.append("g")
         .call(d3.axisLeft(y).tickSize(0))
@@ -94,7 +108,7 @@ function generarGrafico(datosFiltrados) {
         .domain(["Asistida", "Autoservicio"])
         .range(["#8ec0c2", "#f3af4b"]);
 
-    svg.selectAll(".bar")
+        svg.selectAll(".bar")
         .data(datosFiltrados)
         .enter()
         .append("rect")
@@ -109,24 +123,38 @@ function generarGrafico(datosFiltrados) {
         .on("mouseover", function(event, d) {
             d3.select(this)
                 .attr("fill", d3.color(colorScale(d.tipo_de_caja)).darker(1));
-
-            const horas = Math.floor(d.tiempo / 60);
-            const minutos = d.tiempo % 60;
-
-            svg.append("text")
+    
+            // Calcula los minutos y segundos
+            const minutos = Math.floor(d.tiempo / 60);
+            const segundos = d.tiempo % 60;
+    
+            // Crea el tooltip con fondo y estilo de burbuja
+            svg.append("g")
                 .attr("class", "tooltip")
-                .attr("x", x(d.tiempo) + 5)
-                .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 + 4)
+                .append("rect")
+                .attr("x", x(d.tiempo) + 10)
+                .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 - 15)
+                .attr("width", 120)
+                .attr("height", 30)
+                .attr("rx", 15) // Bordes redondeados
+                .attr("fill", "#e3eaf5"); // Fondo del tooltip
+    
+            svg.select(".tooltip")
+                .append("text")
+                .attr("x", x(d.tiempo) + 20)
+                .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 + 5)
                 .attr("text-anchor", "start")
                 .attr("font-size", "14px")
                 .attr("fill", "#33415c")
-                .text(`${horas}:${minutos < 10 ? '0' : ''}${minutos}`);
+                .style("font-weight", "bold")
+                .text(`Promedio: ${minutos} min y ${segundos} seg`);
         })
         .on("mouseout", function(event, d) {
             d3.select(this)
                 .attr("fill", colorScale(d.tipo_de_caja));
             svg.select(".tooltip").remove();
         });
+    
 }
 
 function actualizarTurno(turno) {
