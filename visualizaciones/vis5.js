@@ -25,13 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 .domain([0, maxCantidad])
                 .range([height, 0]);
 
-            // Eje Y
             svg.append("g")
                 .call(d3.axisLeft(y).ticks(5).tickSize(0))
                 .selectAll("text")
                 .style("font-size", "14px");
 
-            // Eje X sin ticks
             svg.append("g")
                 .attr("transform", `translate(0, ${height})`)
                 .call(d3.axisBottom(x).tickSize(0)) // Sin ticks
@@ -42,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("dy", "0em")
                 .style("font-size", "15px");
 
-            // Barras
             svg.selectAll(".bar")
                 .data(data)
                 .enter()
@@ -56,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("rx", 6)
                 .attr("ry", 6);
 
-            // Cantidades en las barras (en lugar de porcentaje)
             svg.selectAll(".bar-label")
                 .data(data)
                 .enter()
@@ -65,11 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("x", d => x(d.Familia) + x.bandwidth() / 2)
                 .attr("y", d => y(d.Cantidad) - 5)
                 .attr("text-anchor", "middle")
-                .text(d => d.Cantidad) // Muestra la cantidad directamente
+                .text(d => d.Cantidad) 
                 .style("fill", "#333")
                 .style("font-size", "12px");
 
-            // Íconos debajo de cada barra
             svg.selectAll(".icon")
                 .data(data)
                 .enter()

@@ -13,7 +13,7 @@ async function cargarDatos() {
         
         datos = rawData.map(d => ({
             ...d,
-            personas: +d.personas_promedio  // Convertir "personas_promedio" a número
+            personas: +d.personas_promedio  
         }));
 
         maxPersonasGlobal = d3.max(datos, d => d.personas) || 0;
@@ -99,7 +99,6 @@ function generarGrafico(datosFiltrados) {
         .on("mouseover", function(event, d) {
             d3.select(this).attr("fill", d3.color(colorScale(d.tipo_de_caja)).darker(1));
         
-            // Muestra solo el valor de personas
             svg.append("text")
                 .attr("class", "tooltip")
                 .attr("x", x(d.personas) + 10)
@@ -108,11 +107,11 @@ function generarGrafico(datosFiltrados) {
                 .attr("font-size", "14px")
                 .attr("fill", "#33415c")
                 .style("font-weight", "bold")
-                .text(d.personas.toFixed(1));  // Muestra el valor con un decimal si es necesario
+                .text(d.personas.toFixed(1)); 
         })
         .on("mouseout", function(event, d) {
             d3.select(this).attr("fill", colorScale(d.tipo_de_caja));
-            svg.select(".tooltip").remove();  // Elimina el tooltip al salir del hover
+            svg.select(".tooltip").remove(); 
         });
         
 }

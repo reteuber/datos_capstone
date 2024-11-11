@@ -2,7 +2,7 @@ const dataUrl = "https://raw.githubusercontent.com/reteuber/visualizaciones_caps
 
 let datos = [];
 let turnoSeleccionado = "Todos";
-let maxTiempoGlobal = 0; // Valor máximo global
+let maxTiempoGlobal = 0;
 
 async function cargarDatos() {
     try {
@@ -17,7 +17,6 @@ async function cargarDatos() {
             return { ...d, tiempo: tiempoEnMinutos };
         });
 
-        // Calcula el valor máximo global de 'tiempo'
         maxTiempoGlobal = d3.max(datos, d => d.tiempo);
         
         filtrarDatos();
@@ -57,7 +56,6 @@ function generarGrafico(datosFiltrados) {
         .append("g")
         .attr("transform", `translate(${margin.left-15}, ${margin.top-30})`);
 
-    // Mantiene el dominio del eje X basado en maxTiempoGlobal
     const x = d3.scaleLinear()
         .domain([0, maxTiempoGlobal || 0])
         .range([0, width]);
@@ -70,21 +68,19 @@ function generarGrafico(datosFiltrados) {
         const xAxis = svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x)
-            .ticks(20)  // Incrementa el número de divisiones en el eje X
+            .ticks(20) 
             .tickFormat(d => `${Math.floor(d / 60)}:${d % 60 < 10 ? '0' : ''}${d % 60}`)
-            .tickSize(0)) // Quita las líneas de ticks del eje X
+            .tickSize(0)) 
         .attr("font-size", "14px");
     
-    // Elimina todas las líneas de ticks de los valores en el eje X
     xAxis.selectAll(".tick line").remove();
     xAxis.select(".tick:first-of-type").remove();
     xAxis.select(".tick:last-of-type").remove();
     xAxis.selectAll("text")
-    .attr("transform", "rotate(-45)")  // Rota el texto 45 grados hacia la izquierda
-    .style("text-anchor", "end")       // Alinea el texto hacia el extremo derecho
-    .attr("dx", "-0.5em")              // Ajusta la posición horizontal para que no se corte
-    .attr("dy", "0.15em");             // Ajusta la posición vertical
-
+    .attr("transform", "rotate(-45)") 
+    .style("text-anchor", "end")       
+    .attr("dx", "-0.5em")             
+    .attr("dy", "0.15em");             
     
 
     svg.append("g")
@@ -124,11 +120,9 @@ function generarGrafico(datosFiltrados) {
             d3.select(this)
                 .attr("fill", d3.color(colorScale(d.tipo_de_caja)).darker(1));
         
-            // Calcula los minutos y segundos
             const minutos = Math.floor(d.tiempo / 60);
             const segundos = d.tiempo % 60;
         
-            // Muestra solo el valor en formato "minutos:segundos"
             svg.append("text")
                 .attr("class", "tooltip")
                 .attr("x", x(d.tiempo) + 10)
