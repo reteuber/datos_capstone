@@ -1,0 +1,38 @@
+[
+    {
+        "Familia": "Almacen",
+        "Cantidad": 51
+    },
+    {
+        "Familia": "Buffet",
+        "Cantidad": 130
+    },
+    {
+        "Familia": "Cafeter\u00eda",
+        "Cantidad": 495
+    },
+    {
+        "Familia": "Cigarros",
+        "Cantidad": 145
+    },
+    {
+        "Familia": "Fast Food",
+        "Cantidad": 361
+    },
+    {
+        "Familia": "Grab and Go",
+        "Cantidad": 75
+    },
+    {
+        "Familia": "Liquidos",
+        "Cantidad": 715
+    },
+    {
+        "Familia": "Non Food & In/Out",
+        "Cantidad": 38
+    },
+    {
+        "Familia": "Snacks",
+        "Cantidad": 396
+    }
+]
