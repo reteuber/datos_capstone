@@ -123,37 +123,28 @@ function generarGrafico(datosFiltrados) {
         .on("mouseover", function(event, d) {
             d3.select(this)
                 .attr("fill", d3.color(colorScale(d.tipo_de_caja)).darker(1));
-    
+        
             // Calcula los minutos y segundos
             const minutos = Math.floor(d.tiempo / 60);
             const segundos = d.tiempo % 60;
-    
-            // Crea el tooltip con fondo y estilo de burbuja
-            svg.append("g")
+        
+            // Muestra solo el valor en formato "minutos:segundos"
+            svg.append("text")
                 .attr("class", "tooltip")
-                .append("rect")
                 .attr("x", x(d.tiempo) + 10)
-                .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 - 15)
-                .attr("width", 120)
-                .attr("height", 30)
-                .attr("rx", 15) // Bordes redondeados
-                .attr("fill", "#e3eaf5"); // Fondo del tooltip
-    
-            svg.select(".tooltip")
-                .append("text")
-                .attr("x", x(d.tiempo) + 20)
                 .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 + 5)
                 .attr("text-anchor", "start")
                 .attr("font-size", "14px")
                 .attr("fill", "#33415c")
                 .style("font-weight", "bold")
-                .text(`Promedio: ${minutos} min y ${segundos} seg`);
+                .text(`${minutos}:${segundos < 10 ? '0' : ''}${segundos}`);
         })
         .on("mouseout", function(event, d) {
             d3.select(this)
                 .attr("fill", colorScale(d.tipo_de_caja));
             svg.select(".tooltip").remove();
         });
+        
     
 }
 

@@ -98,10 +98,23 @@ function generarGrafico(datosFiltrados) {
         .attr("fill", d => colorScale(d.tipo_de_caja))
         .on("mouseover", function(event, d) {
             d3.select(this).attr("fill", d3.color(colorScale(d.tipo_de_caja)).darker(1));
+        
+            // Muestra solo el valor de personas
+            svg.append("text")
+                .attr("class", "tooltip")
+                .attr("x", x(d.personas) + 10)
+                .attr("y", y(d.tipo_de_caja) + y.bandwidth() / 2 + 5)
+                .attr("text-anchor", "start")
+                .attr("font-size", "14px")
+                .attr("fill", "#33415c")
+                .style("font-weight", "bold")
+                .text(d.personas.toFixed(1));  // Muestra el valor con un decimal si es necesario
         })
         .on("mouseout", function(event, d) {
             d3.select(this).attr("fill", colorScale(d.tipo_de_caja));
+            svg.select(".tooltip").remove();  // Elimina el tooltip al salir del hover
         });
+        
 }
 
 function actualizarTurno(turno) {
