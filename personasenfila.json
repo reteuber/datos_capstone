@@ -1,1 +1,8 @@
-[{"Personas promedio":4,"tipo de caja":"Asistida","turno":"Mañana"},{"Personas promedio":1,"tipo de caja":"Autoservicio","turno":"Mañana"},{"Personas promedio":8,"tipo de caja":"Asistida","turno":"Tarde"},{"Personas promedio":5,"tipo de caja":"Autoservicio","turno":"Tarde"},{"Personas promedio":2,"tipo de caja":"Asistida","turno":"Noche"},{"Personas promedio":1,"tipo de caja":"Autoservicio","turno":"Noche"}]
+[
+    {"personas_promedio": 4, "tipo_de_caja": "Asistida", "turno": "Mañana"},
+    {"personas_promedio": 1, "tipo_de_caja": "Autoservicio", "turno": "Mañana"},
+    {"personas_promedio": 8, "tipo_de_caja": "Asistida", "turno": "Tarde"},
+    {"personas_promedio": 5, "tipo_de_caja": "Autoservicio", "turno": "Tarde"},
+    {"personas_promedio": 2, "tipo_de_caja": "Asistida", "turno": "Noche"},
+    {"personas_promedio": 1, "tipo_de_caja": "Autoservicio", "turno": "Noche"}
+]
